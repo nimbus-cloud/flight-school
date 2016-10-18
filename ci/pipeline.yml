@@ -1,0 +1,26 @@
+resources:
+- name: flight-school
+  type: git
+  source:
+    uri: https://github.com/nimbus-cloud/flight-school
+    branch: master
+
+- name: staging-app
+  type: cf
+  source:
+    api: {{cf_api_url}}
+    username: {{cf_user}}
+    password: {{cf_password}}
+    organization: {{cf_org}}
+    space: {{cf_space}}
+
+jobs:
+- name: test-app
+  plan:
+  - get: flight-school
+    trigger: true
+  - task: tests
+    file: flight-school/build.yml
+  - put: staging-app
+    params:
+      manifest: flight-school/manifest.yml
