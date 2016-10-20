@@ -1,4 +1,4 @@
 name: flight-school
 memory: 128M
-random-route: false
+random-route: true
 path: .

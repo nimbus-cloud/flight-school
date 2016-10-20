@@ -24,4 +24,3 @@ jobs:
   - put: staging-app
     params:
       manifest: flight-school/manifest.yml
-      current_app_name: flight-school
